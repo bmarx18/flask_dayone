@@ -32,7 +32,7 @@ ul#horizontal-list li, ul#horizontal-list a {
 }
 
 ul#horizontal-list a:nth-last-child(1) {
-    border: 2px solid blue;
+    border: 2px solid #BE383A;
     border-radius: 11px;
     margin-right: 0.2vw;
     color: white;
@@ -70,13 +70,49 @@ ul#horizontal-list a:nth-last-child(1) {
 
 /* Start of Features Section Styles */
 
-#api-image, #graphql-image, #database-image {
+#captain_marvel-image, #black_widow-image {
     margin-bottom: 10vh;
-    max-width: 50%;
+    max-width: 60%;
+    max-height: 60%;
+    margin-left: 75px;
+}
+
+#wanda-image {
+    margin-top: 4vh;
+    margin-bottom: 8vh;
+    max-width: 60%;
+    max-height: 60%;
+    margin-left: 75px;
 }
 
 #features-section {
     margin: 8vw;
+    font-weight: 150;
+}
+
+#carol_d, #natasha_r, #wanda_m{
+    position: center;
+    color: #BE383A;
+    margin-left: 15px;
+}
+
+#wanda_m{
+    margin-top: 75px;
+    margin-left: 50px;
+    position: center;
+    color: #BE383A;
+}
+
+#carol_d_quote, #natasha_r_quote{
+    margin-top: 20px;
+    position: center;
+    font-weight: 200;
+}
+
+#wanda_m_quote{
+    position: center;
+    font-weight: 200;
+    margin-left: 10px;
 }
 
 /* End of Features Section */
