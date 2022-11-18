@@ -26,6 +26,7 @@ class User(db.Model, UserMixin):
     g_auth_verify = db.Column(db.Boolean, default = False)
     token = db.Column(db.String, default = '', unique = True)
     date_created = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
+    avenger = db.relationship('Avenger', backref='owner', lazy = True)
 
     def __init__(self, email, first_name = '', last_name = '', id = '', password = '', token = '', g_auth_verify = False):
         self.id = self.set_id()
@@ -35,6 +36,7 @@ class User(db.Model, UserMixin):
         self.email = email
         self.token = self.set_token(24)
         self.g_auth_verify = g_auth_verify
+
 
     def set_token(self, length):
         return secrets.token_hex(length)
