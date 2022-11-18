@@ -16,21 +16,22 @@ def create_avenger(current_user_token):
     power_abilities = request.json['power_abilities']
     height = request.json['height']
     movies = request.json['movies']
+    comics = request.json['comics']
     allies = request.json['allies']
     enemies = request.json['enemies']
     groups = request.json['groups']
     living_or_decease = request.json['living_or_decease']
-    user_token = current_user_token
+    user_token = current_user_token.token
 
     print(f'User Token: {current_user_token.token}')
 
-    avenger = Avenger(name, power_abilities, height, movies, allies, enemies, groups, living_or_decease, 
+    avenger = Avenger(name, power_abilities, height, movies, comics, allies, enemies, groups, living_or_decease, 
     user_token = user_token)
 
     db.session.add(avenger)
     db.session.commit()
 
-    response = avengers_schema.dump(avenger)
+    response = avenger_schema.dump(avenger)
 
     return jsonify(response)
 
@@ -39,16 +40,16 @@ def create_avenger(current_user_token):
 def get_avengers(current_user_token):
     owner = current_user_token.token
     avengers = Avenger.query.filter_by(user_token = owner).all()
-    response = avenger_schema.dump(avengers)
+    response = avengers_schema.dump(avengers)
     return jsonify(response)
 
 @api.route('/avengers/<id>', methods = ['GET'])
 @token_required
-def get_drone(current_user_token, id):
+def get_avenger(current_user_token, id):
     owner = current_user_token
     if owner == current_user_token.token:
         avenger = Avenger.query.get(id)
-        response = avenger_schema.dump(Avenger)
+        response = avenger_schema.dump(avenger)
         return jsonify(response)
     else:
         return jsonify({ 'message': 'Valid Token Required' }), 401
